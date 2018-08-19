@@ -1,0 +1,12 @@
+
+template:
+  params:
+    bootswatch: lumen
+    ganalytics: UA-74544116-1
+
+development:
+  mode: unreleased
+
+authors:
+  John Coene:
+    href: http://john-coene.com

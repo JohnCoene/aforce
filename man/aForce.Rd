@@ -14,10 +14,25 @@ Create a VR force directed graph.
 \section{Methods}{
 
 \itemize{
-  \item{\code{set_nodes} Add nodes.}
-  \item{\code{set_edges} Add edges.}
+  \item{\code{nodes} Add nodes.}
+  \item{\code{edges} Add edges.}
   \item{\code{plot} Plot graph}
 }
 }
 
+\examples{
+if(interactive()){
+  graph <- aForce$
+    new()$
+    nodes(some_nodes, id, val, color)$
+    links(some_links, source, target)$
+    plot()
+
+  aframer::browse_aframe(graph)
+}
+
+}
+\seealso{
+\href{https://github.com/vasturiano/aframe-forcegraph-component}{official page}.
+}
 \keyword{datasets}

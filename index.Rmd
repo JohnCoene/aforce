@@ -1,0 +1,38 @@
+# aforce
+
+```{r, eval=TRUE, include=FALSE}
+library(htmltools)
+```
+
+3D Virtual Force Directed Graph in R.
+
+## Installation
+
+```{r, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("JohnCoene/aforce")
+```
+
+## Example
+
+```{r, eval=FALSE}
+graph <- aForce$
+  new()$
+  nodes(some_nodes, id, val, color)$
+  links(some_links, source, target)$
+  plot()
+
+aframer::browse_aframe(graph)
+```
+
+Click the demo below to view the demo.
+
+```{r, echo=FALSE}
+tags$a(
+  tags$i(class = "fa fa-lg fa-eye"),
+  " Demo",
+  href = "example.html",
+  target = "_blank",
+  class = "btn btn-lg btn-primary"
+)
+```

@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 test.html
 ^LICENSE\.md$
+^data-raw$
+aforce.png
+index.Rmd
+_pkgdown.yml

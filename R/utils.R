@@ -9,7 +9,6 @@
 
 .as_json <- function(x){
   jsonlite::toJSON(x, auto_unbox = TRUE, force = TRUE)
-  #gsub("\"", "'", x)
 }
 
 .get_dependency <- function(script){
