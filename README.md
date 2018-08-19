@@ -21,4 +21,4 @@ graph <- aForce$
 aframer::browse_aframe(graph)
 ```
 
-[output](aforce.png)
+![output](aforce.png)
