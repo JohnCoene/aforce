@@ -68,9 +68,9 @@ aForce <- R6::R6Class("aForce", list(
     private$links_data <- .as_json(data)
     invisible(self)
   },
-  plot = function(...){
+  plot = function(){
 
-    opts <- glue::glue(' {names(private$options)}: {private$options};')
+    opts <- glue::glue('{names(private$options)}: {private$options}; ')
 
     tag <- glue::glue(
       "<a-entity forcegraph='",
@@ -81,9 +81,10 @@ aForce <- R6::R6Class("aForce", list(
     )
 
     g <- aframer::a_scene(
+      version = "0.8.0",
       aframer::a_camera(),
       htmltools::HTML(tag),
-      ...
+      aframer::a_sky()
     )
 
     dep <- .get_dependency("aframe-forcegraph-component.min.js")

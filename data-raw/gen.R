@@ -12,7 +12,7 @@ names(links) <- c("source", "target")
 names(nodes) <- "id"
 row.names(nodes) <- NULL
 
-nodes$color <- colorRampPalette(c("#B1E2A3", "#98D3A5", "#328983", "#1C5C70", "#24C96B"))(nrow(nodes))
+nodes$color <- colorRampPalette(c("#FF005C", "#02C6FF", "#008976", "#dddc37"))(nrow(nodes))
 nodes$val <- round(runif(nrow(nodes), 1, 10))
 nodes$label <- nodes$id
 
