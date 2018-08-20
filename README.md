@@ -2,6 +2,8 @@
 
 3D Virtual Force Directed Graph in R.
 
+![logo](man/figures/logo.png)
+
 ## Installation
 
 ``` r
