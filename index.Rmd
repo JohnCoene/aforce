@@ -4,7 +4,19 @@
 library(htmltools)
 ```
 
-3D Virtual Force Directed Graph in R.
+```{r, echo=FALSE}
+div(
+  class = "row",
+  div(
+    class = "col-md-3",
+    img(src = "logo.png")
+  ),
+  div(
+    class = "col-md-9",
+    "3D Virtual Force Directed Graph in R."
+  )
+)
+```
 
 ### Installation
 
