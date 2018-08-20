@@ -1,4 +1,4 @@
-# aforce
+## aforce
 
 ```{r, eval=TRUE, include=FALSE}
 library(htmltools)
@@ -6,14 +6,14 @@ library(htmltools)
 
 3D Virtual Force Directed Graph in R.
 
-## Installation
+### Installation
 
 ```{r, eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("JohnCoene/aforce")
 ```
 
-## Example
+### Example
 
 ```{r, eval=FALSE}
 graph <- aForce$
