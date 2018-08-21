@@ -27,17 +27,21 @@ devtools::install_github("JohnCoene/aforce")
 
 ### Example
 
-```{r, eval=FALSE}
-graph <- aForce$
-  new()$
-  nodes(some_nodes, id, val, color)$
-  links(some_links, source, target)$
-  plot()
+```{r, eval=TRUE}
+library(aforce)
 
-aframer::browse_aframe(graph)
+data("some_nodes")
+data("some_links")
+
+aForce$
+  new()$ # initialise
+  nodes(some_nodes, id, val, color)$ # add nodes
+  links(some_links, source, target)$ # add edges
+  build()$ # build
+  embed() # get embed tag
 ```
 
-Click the demo below to view the demo.
+Click the link below for a full-screen version.
 
 ```{r, echo=FALSE}
 tags$a(

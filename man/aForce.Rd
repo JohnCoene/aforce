@@ -16,7 +16,10 @@ Create a VR force directed graph.
 \itemize{
   \item{\code{nodes} Add nodes.}
   \item{\code{edges} Add edges.}
-  \item{\code{plot} Plot graph}
+  \item{\code{build} Build graph}
+  \item{\code{get} Get graph}
+  \item{\code{browse} Browse graph}
+  \item{\code{embed} Embed graph}
 }
 }
 
@@ -26,7 +29,8 @@ if(interactive()){
     new()$
     nodes(some_nodes, id, val, color)$
     links(some_links, source, target)$
-    plot()
+    build()$
+    get()
 
   aframer::browse_aframe(graph)
 }

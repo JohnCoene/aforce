@@ -6,7 +6,10 @@
 #' \itemize{
 #'   \item{\code{nodes} Add nodes.}
 #'   \item{\code{edges} Add edges.}
-#'   \item{\code{plot} Plot graph}
+#'   \item{\code{build} Build graph}
+#'   \item{\code{get} Get graph}
+#'   \item{\code{browse} Browse graph}
+#'   \item{\code{embed} Embed graph}
 #' }
 #'
 #' @examples
@@ -15,7 +18,8 @@
 #'     new()$
 #'     nodes(some_nodes, id, val, color)$
 #'     links(some_links, source, target)$
-#'     plot()
+#'     build()$
+#'     get()
 #'
 #'   aframer::browse_aframe(graph)
 #' }
@@ -68,7 +72,7 @@ aForce <- R6::R6Class("aForce", list(
     private$links_data <- .as_json(data)
     invisible(self)
   },
-  plot = function(){
+  build = function(){
 
     opts <- glue::glue('{names(private$options)}: {private$options}; ')
 
@@ -89,9 +93,30 @@ aForce <- R6::R6Class("aForce", list(
 
     dep <- .get_dependency("aframe-forcegraph-component.min.js")
 
-    htmltools::tagList(g, dep)
+    plot <- htmltools::tagList(g, dep)
+    private$plot <- plot
+    invisible(self)
+  },
+  get = function(){
+    private$plot
+  },
+  browse = function(){
+    aframer::browse_aframe(private$plot)
+  },
+  embed = function(width = "100%", height = "400px"){
+    style <- glue::glue("width:{width};height:{height};")
+
+    a <- private$plot
+
+    a[[1]][[1]] <- htmltools::tagAppendAttributes(a[[1]][[1]], style = style, embedded = NA)
+    htmltools::div(
+      a
+    )
   }),
   private = list(
+    width = "100%",
+    height = "400px",
+    plot = NULL,
     nodes_data = NULL,
     links_data = NULL,
     options = list()
