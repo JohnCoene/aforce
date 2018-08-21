@@ -72,7 +72,7 @@ aForce <- R6::R6Class("aForce", list(
     private$links_data <- .as_json(data)
     invisible(self)
   },
-  build = function(){
+  build = function(...){
 
     opts <- glue::glue('{names(private$options)}: {private$options}; ')
 
@@ -86,9 +86,8 @@ aForce <- R6::R6Class("aForce", list(
 
     g <- aframer::a_scene(
       version = "0.8.0",
-      aframer::a_camera(),
-      htmltools::HTML(tag),
-      aframer::a_sky()
+      ...,
+      htmltools::HTML(tag)
     )
 
     dep <- .get_dependency("aframe-forcegraph-component.min.js")
@@ -98,20 +97,21 @@ aForce <- R6::R6Class("aForce", list(
     invisible(self)
   },
   get = function(){
-    private$plot
+    return(private$plot)
   },
   browse = function(){
     aframer::browse_aframe(private$plot)
   },
   embed = function(width = "100%", height = "400px"){
-    style <- glue::glue("width:{width};height:{height};")
+    private$height <- height
+    private$width <- width
+    style <- glue::glue("width:{private$width};height:{private$height};")
 
     a <- private$plot
 
     a[[1]][[1]] <- htmltools::tagAppendAttributes(a[[1]][[1]], style = style, embedded = NA)
-    htmltools::div(
-      a
-    )
+
+    htmltools::div(a)
   }),
   private = list(
     width = "100%",
