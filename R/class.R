@@ -28,7 +28,7 @@
 #'
 #' @export
 aForce <- R6::R6Class("aForce", list(
-  initialize = function(dim = 3, n_rel_size = 4, n_id = "id", n_label = "name",
+  initialize = function(cdn = FALSE, dim = 3, n_rel_size = 4, n_id = "id", n_label = "name",
                         n_desc = "desc", n_val = "val", n_res = 8, n_color = "color",
                         n_opacity = .75, l_src = "source", l_tgt = "target", l_label = "name",
                         l_vis = TRUE, l_desc = "desc", l_hover = 2, l_color = "color",
@@ -57,6 +57,7 @@ aForce <- R6::R6Class("aForce", list(
       `link-curve-rotation` = l_curve_rot
     )
 
+    private$cdn <- cdn
     private$options <- opts
 
   },
@@ -85,15 +86,12 @@ aForce <- R6::R6Class("aForce", list(
     )
 
     g <- aframer::a_scene(
-      version = "0.8.0",
+      aframer::a_dependency(cdn = private$cdn),
+      .get_dependency("aframe-forcegraph-component.min.js"),
       ...,
       htmltools::HTML(tag)
     )
-
-    dep <- .get_dependency("aframe-forcegraph-component.min.js")
-
-    plot <- htmltools::tagList(g, dep)
-    private$plot <- plot
+    private$plot <- g
     invisible(self)
   },
   get = function(){
@@ -109,11 +107,12 @@ aForce <- R6::R6Class("aForce", list(
 
     a <- private$plot
 
-    a[[1]][[1]] <- htmltools::tagAppendAttributes(a[[1]][[1]], style = style, embedded = NA)
+    a[[1]] <- htmltools::tagAppendAttributes(a[[1]], style = style, embedded = NA)
 
     htmltools::div(a)
   }),
   private = list(
+    cdn = FALSE,
     width = "100%",
     height = "400px",
     plot = NULL,
