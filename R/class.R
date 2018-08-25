@@ -28,7 +28,7 @@
 #'
 #' @export
 aForce <- R6::R6Class("aForce", list(
-  initialize = function(cdn = FALSE, dim = 3, n_rel_size = 4, n_id = "id", n_label = "name",
+  initialize = function(dim = 3, n_rel_size = 4, n_id = "id", n_label = "name",
                         n_desc = "desc", n_val = "val", n_res = 8, n_color = "color",
                         n_opacity = .75, l_src = "source", l_tgt = "target", l_label = "name",
                         l_vis = TRUE, l_desc = "desc", l_hover = 2, l_color = "color",
@@ -57,7 +57,6 @@ aForce <- R6::R6Class("aForce", list(
       `link-curve-rotation` = l_curve_rot
     )
 
-    private$cdn <- cdn
     private$options <- opts
 
   },
@@ -79,19 +78,18 @@ aForce <- R6::R6Class("aForce", list(
 
     tag <- glue::glue(
       "<a-entity forcegraph='",
-      paste0(opts, collapse = ""),
+      glue::glue_collapse(opts, sep = ""),
       "nodes: {private$nodes_data}; ",
       "links: {private$links_data}; ",
       "'></a-entity>"
     )
 
-    g <- aframer::a_scene(
-      aframer::a_dependency(cdn = private$cdn),
+    private$plot <- aframer::a_scene(
+      aframer::a_dependency(version = "0.8.2"),
       .get_dependency("aframe-forcegraph-component.min.js"),
       ...,
       htmltools::HTML(tag)
     )
-    private$plot <- g
     invisible(self)
   },
   get = function(){
@@ -103,16 +101,13 @@ aForce <- R6::R6Class("aForce", list(
   embed = function(width = "100%", height = "400px"){
     private$height <- height
     private$width <- width
-    style <- glue::glue("width:{private$width};height:{private$height};")
+    style <- glue::glue("width:{width};height:{height};")
 
     a <- private$plot
 
-    a[[1]] <- htmltools::tagAppendAttributes(a[[1]], style = style, embedded = NA)
-
-    htmltools::div(a)
+    aframer::embed_aframe(a, width, height)
   }),
   private = list(
-    cdn = FALSE,
     width = "100%",
     height = "400px",
     plot = NULL,
