@@ -32,7 +32,8 @@ aForce <- R6::R6Class("aForce", list(
                         n_desc = "desc", n_val = "val", n_res = 8, n_color = "color",
                         n_opacity = .75, l_src = "source", l_tgt = "target", l_label = "name",
                         l_vis = TRUE, l_desc = "desc", l_hover = 2, l_color = "color",
-                        l_opacity = .2, l_width = 0, l_res = 6, l_curve = 0, l_curve_rot = 0){
+                        l_opacity = .2, l_width = 0, l_res = 6, l_curve = 0, l_curve_rot = 0,
+												width = "100%", height = "400px"){
     opts <- list(
       `num-dimensions` = dim,
       `node-rel-size` = n_rel_size,
@@ -98,18 +99,14 @@ aForce <- R6::R6Class("aForce", list(
   browse = function(){
     aframer::browse_aframe(private$plot)
   },
-  embed = function(width = "100%", height = "400px"){
-    private$height <- height
-    private$width <- width
-    style <- glue::glue("width:{width};height:{height};")
+  embed = function(width = "100%", height = "400px", ...){
+    style <- glue::glue("width:{width};height:{height};", ...)
 
     a <- private$plot
 
     aframer::embed_aframe(a, width, height)
   }),
   private = list(
-    width = "100%",
-    height = "400px",
     plot = NULL,
     nodes_data = NULL,
     links_data = NULL,

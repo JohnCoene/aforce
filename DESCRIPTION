@@ -9,6 +9,6 @@ Encoding: UTF-8
 LazyData: true
 Imports: R6, dplyr, aframer, jsonlite, glue, htmltools
 Remotes: JohnCoene/aframer
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 URL: http://aforce.john-coene.com/
 BugReports: https://github.com/JohnCoene/aforce/issues

@@ -14,13 +14,23 @@ devtools::install_github("JohnCoene/aforce")
 ## Example
 
 ``` r
-graph <- aForce$
-  new()$
-  nodes(some_nodes, id, val, color)$
-  links(some_links, source, target)$
-  plot()
+library(aforce)
 
-aframer::browse_aframe(graph)
+data("some_nodes")
+data("some_links")
+
+aForce$
+  new(n_label = "label")$ # initialise
+  nodes(some_nodes, id, val, color, label)$ # add nodes
+  links(some_links, source, target)$ # add edges
+  build( # build
+    aframer::a_camera(
+      `wasd-controls` = "fly: true; acceleration: 600",
+      aframer::a_cursor(opacity = 0.5)
+    ),
+    aframer::a_sky(color="#4c4c4c")
+  )$ 
+  browse() # browse graph
 ```
 
 ![output](aforce.png)
